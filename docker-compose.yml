@@ -38,6 +38,16 @@ services:
     networks:
       - laravel
 
+  weather-redis:
+    image: redis:latest
+    container_name: weather-redis
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "6379:6379"
+    networks:
+      - laravel
+
   weather-php:
     build:
       args:

@@ -2,6 +2,8 @@ FROM php:7.2-fpm
 
 RUN docker-php-ext-install pdo pdo_mysql
 
+#Copy Memory limit php config
+COPY "docker-php-memory-limit.ini" "/usr/local/etc/php/conf.d/docker-php-memory-limit.ini"
 
 #If you would rather add in your source to the container
 #use this block instead of the current permissions hack

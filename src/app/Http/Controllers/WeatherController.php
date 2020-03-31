@@ -36,9 +36,34 @@ class WeatherController extends Controller
                 ],
             ])->getBody())
         );
+    }
 
+    private function geoLookup($query) {
 
+        $inputZipCode = (int) $query;
+        //echo getcwd() . "\n";
+        $zipMap = file_get_contents('./us-zip-code-latitude-and-longitude.json');
         
+        $zipMap = json_decode($zipMap);
+
+        $matchFound = FALSE;
+        $match = null;
+
+        //echo sprintf("", $inputZipCode);
+        foreach ($zipMap as $l) {
+            //print_r($l->fields);
+            if ($inputZipCode == $l->fields->zip)
+            {
+                $matchFound = TRUE;
+                $match = $l->fields;
+                break;
+
+            }
+
+        }
+
+        print_r($match);
+        die();
     }
 
     /**
@@ -68,9 +93,10 @@ class WeatherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($query)
     {
-        //
+        $location = app()->make('GeoHelper')->findZip($query);
+        return response()->json($location);
     }
 
     /**

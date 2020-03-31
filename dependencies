@@ -31,3 +31,4 @@ php-memcached
 php-redis
 php-xdebug
 php-soap
+php-curl
