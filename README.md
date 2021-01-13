@@ -1,3 +1,6 @@
+# ARCHIVED
+This was originally written rapidly one night before an interview
+
 # Osky Weather
 
 Display local user's weather information as quickly as possible
